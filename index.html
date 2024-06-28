@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>App-TechVaseegrah</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="assets/images/favicon1.ico" />
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row flex-grow">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <div class="brand-logo">
+                <img src="assets/images/Tech Logo1.png">
+              </div>
+              <h4>Hello! let's get started</h4>
+              <h6 class="font-weight-light">Create Account to continue.</h6>
+              <form class="pt-3" id="create-account-form">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" id="name" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-lg" id="username" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
+                </div>
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-block btn-gradient-success btn-fw btn-lg font-weight-medium auth-form-btn">CREATE ACCOUNT</button>
+                </div>
+                <h3>or</h3><p>already have an account? <a href="login.html">Login</a></p>
+                <div class="my-2 d-flex justify-content-between align-items-center"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="assets/js/off-canvas.js"></script>
+  <script src="assets/js/hoverable-collapse.js"></script>
+  <script src="assets/js/misc.js"></script>
+  <!-- endinject -->
+
+  <script>
+    // Your Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyB7hKmSCXAMfMchx34X9aYmrPHCciVO2UE",
+    authDomain: "f3-engine.firebaseapp.com",
+    projectId: "f3-engine",
+    storageBucket: "f3-engine.appspot.com",
+    messagingSenderId: "244535401486",
+    appId: "1:244535401486:web:1c27d76cc4095c8f01705f",
+    measurementId: "G-BY85L7N7LB"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Handle the create account form submission
+    document.getElementById('create-account-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var username = document.getElementById('name').value;
+      var email = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Account created successfully
+          var user = userCredential.user;
+          console.log('Account created:', user);
+
+          // Update the user's profile with the username
+          user.updateProfile({
+            displayName: username
+          }).then(() => {
+            window.location.href = "settings.html"; // Redirect to dashboard
+          });
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error('Error creating account:', errorCode, errorMessage);
+          alert(errorMessage); // Display error message to the user
+        });
+    });
+  </script>
+</body>
+</html>
