@@ -1,0 +1,33 @@
+{
+  "name": "web-application",
+  "version": "1.0.0",
+  "description": "<a href=\"http://www.bootstrapdash.com/demo/purple-admin-free\" target=\"_blank\"><img src=\"screenshot.jpg\"></a>",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "bwip-js": "^4.4.0",
+    "config": "^3.3.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase": "^10.12.2",
+    "firebase-admin": "^12.2.0",
+    "fs": "^0.0.1-security",
+    "html-pdf": "^3.0.1",
+    "mongoose": "^8.4.4",
+    "node-fetch": "^2.7.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "pdf-lib": "^1.17.1",
+    "phantomjs-prebuilt": "^2.1.16"
+  },
+  "devDependencies": {}
+}
